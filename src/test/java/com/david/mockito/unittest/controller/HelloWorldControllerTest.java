@@ -10,9 +10,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @WebMvcTest(HelloWorldController.class)
@@ -24,7 +24,9 @@ public class HelloWorldControllerTest {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/hello")
                 .accept(MediaType.APPLICATION_JSON);
-        MvcResult result = mockMvc.perform(request).andReturn();
-        assertEquals("Hello you", result.getResponse().getContentAsString());
+        MvcResult result = mockMvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(("Hello you")))
+                .andReturn();
     }
 }
