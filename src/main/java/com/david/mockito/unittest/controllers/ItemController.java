@@ -11,7 +11,11 @@ public class ItemController {
     private ItemData data;
 
     @GetMapping("/dummy-item")
-    public Item dummy_item(){
+    public Item dummyItem(){
+        return new Item(1, "New item", 90);
+    }
+    @GetMapping("/item-from-db")
+    public Item itemFromDB(){
         return this.data.retrieveHardCodedItem();
     }
 }
