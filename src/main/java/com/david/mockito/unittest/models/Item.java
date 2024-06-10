@@ -14,7 +14,7 @@ public class Item {
     private int value;
 
     protected Item() {
-        
+
     }
 
     public int getValue() {
